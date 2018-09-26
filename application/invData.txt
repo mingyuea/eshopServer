@@ -1,0 +1,26 @@
+cas1;White Casual Shirt;14;4.1;A nice, casual buttoned shirt;/cas1.jpg
+cas2;Black Casual Shirt;14;4.5;A black casual buttoned shirt;/cas2.jpg
+cas3;Checkered Casual Shirt;11;3.5;A checkered casual buttoned shirt;/cas3.jpg
+cas4;Grey Casual Shirt; 13; 4;A grey casual buttoned shirt; /cas4.jpg
+cas5;Blue Casual Shirt; 16; 4.8;A blue casual buttoned shirt; /cas5.jpg
+dre1;Blue Dress Shirt;18;4.6;A blue dress shirt;/dre1.jpg
+dre2;White Dress Shirt;18;4.6;A white dress shirt;/dre2.jpg
+dre3;Darkeer Blue Dress Shirt;18;4.6;Another blue dress shirt;/dre3.jpg
+dre4;Another White Dress Shirt;18;4.6;A white dress shirt;/dre4.jpg
+dre5;Blue Checkered Dress Shirt;18;4.6;A blue checkered dress shirt;/dre5.jpg
+dre6;Darker White Dress Shirt;18;4.6;A darker white dress shirt;/dre6.jpg
+j1;Faded Blue Jeans;35;3;A pair of faded blue jeans;j1.jpg
+j2;Another Pair of Faded Blue Jeans;36;3.3;Another pair of faded blue jeans;j2.jpg
+j3;Black Jeans;37;4;A pair of black jeans;j3.jpg
+p1;Light Blue Pants;32;4;A pair of light blue pants;p1.jpg
+p2;Black Pants;32;4;A pair of black pants;p2.jpg
+p3;Grey Pants;32;4;A pair of grey pants;p3.jpg
+p4;Sports Pants;35;4;A pair of sports pants;p4.jpg
+p5;Dark Blue Pants;33;4;A pair of dark blue pants;p5.jpg
+ss1;Cute Black Dress;55;4.8;A cute black dress;ss1.jpg
+ss2;Cute Black Romper;55;4.8;A cute blue romper;ss2.jpg
+ss3;Cute Flowery Dress;55;4.8;A cute flowery dress;ss3.jpg
+ss4;Cute Blue Dress;55;4.8;A cute blue dress;ss4.jpg
+ss5;Cute Black Cocktail Dress;55;4.8;A cute black cocktail dress;ss5.jpg
+ss6;Somber Black Dress;55;4.8;A somber black dress;ss6.jpg
+ENDFILE

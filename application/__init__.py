@@ -4,7 +4,7 @@ from flask_cors import CORS
 
 def create_app(test_config=None):
 	app = Flask(__name__, instance_relative_config=True)
-	CORS(app)
+	#CORS(app)
 	app.config.from_mapping(
 		SECRET_KEY='dev',
 		#DATABASE_URI='mysql://ming@localhost/3306',
@@ -26,4 +26,7 @@ def create_app(test_config=None):
 	from . import auth
 	app.register_blueprint(auth.bp)
 
+	from . import operations
+	app.register_blueprint(operations.bp)
+	
 	return app
