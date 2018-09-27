@@ -27,13 +27,9 @@ def init():
 		res = {"signedIn": True, "username": username[0]}
 		
 	resp = cors_res(res=res)
-	'''js = json.dumps(res)
-	resp = make_response(js)
-	resp.headers['Access-Control-Allow-Origin'] = "http://localhost:8080"
-	resp.headers['Access-Control-Allow-Credentials'] = 'true'
-	resp.headers['Access-Control-Allow-Headers'] = "Content-Type"'''
 
 	return resp
+
 
 @bp.route('/signup', methods=('POST','OPTIONS'))
 def signup():
@@ -108,7 +104,7 @@ def signup():
 			return cors_res(res)
 
 		flash(error)
-	#write function that will also add new user to cartdata
+
 
 @bp.route('/login', methods=('POST','OPTIONS'))
 def login():
@@ -152,14 +148,6 @@ def login():
 		else:
 			res['actionSuccess'] = False
 			res['error'] = error
-		
-		
-		'''
-		resp = Response(js, status=200, mimetype='application/json')		
-		resp.headers['Access-Control-Allow-Origin'] = "http://localhost:8080"
-		resp.headers['Access-Control-Allow-Credentials'] = 'true'
-		resp.headers['Access-Control-Allow-Headers'] = "Content-Type"
-		current_app.logger.debug(session['user_id'])'''
 
 		resp = cors_res(res)
 		return resp
@@ -185,12 +173,6 @@ def logout():
 		res['logout'] = True
 	else:
 		res['logout'] = False
-
-	'''res = json.dumps(res)
-	resp = Response(res, status=200, mimetype='application/json')		
-	resp.headers['Access-Control-Allow-Origin'] = "http://localhost:8080"
-	resp.headers['Access-Control-Allow-Credentials'] = 'true'
-	resp.headers['Access-Control-Allow-Headers'] = "Content-Type"
-	'''
+		
 	resp = cors_res(res)
 	return resp

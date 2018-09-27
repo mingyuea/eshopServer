@@ -26,11 +26,8 @@ def addcart():
 		userID = session.get("user_id")
 		reqDict = request.get_json()
 		itemcode = str(reqDict['itemcode'])
-		itemAmt = reqDict['itemAmt']
-		
+		itemAmt = reqDict['itemAmt']		
 		resBody = {}
-		#current_app.logger.debug(userID)
-		#return cors_res()
 
 		if userID is not None:
 			db = get_db()
@@ -55,25 +52,16 @@ def addcart():
 			itemCount = -1
 
 			for item in rowData:
-				if item is not None:
+				if item is not None and item > 0:
 					itemCount += 1
 
-			current_app.logger.debug('itemcount is '+ str(itemCount))
 			cursor.close()
 			db.commit()
 			resBody['addSuccess'] = True
 			resBody['itemCount'] = itemCount
+			
 			return cors_res(resBody)
 
-		'''else:
-			tmpCart = session.get("tmp_cart")
-			if tmpCart is None:
-				tmpCart = [itemCode]
-				session.clear()
-			else:
-				tmpCart.append(itemCode)
-				
-			session["tmp_cart"] = tmpCart'''
 
 @bp.route('/cart', methods=('OPTIONS', 'GET'))
 def cart():
@@ -93,7 +81,7 @@ def cart():
 
 			for key, val in cartData.items():
 				tmpObj = {}
-				if key != 'id' and val is not None:
+				if key != 'id' and val is not None and val > 0:
 					tmpObj['itemcode'] = key
 					tmpObj['amt'] = val
 					tmpCart.append(tmpObj)
@@ -104,5 +92,29 @@ def cart():
 				item['itemData'] = cursor.fetchone()
 			cursor.close()
 
-			#current_app.logger.debug(tmpCart)
 			return cors_res(tmpCart)
+
+
+@bp.route('/remove', methods={'OPTIONS', 'POST'})
+def remove():
+	if request.method == 'OPTIONS':
+		return cors_res()
+	else:
+		userID = session.get('user_id');
+		reqDict = request.get_json()
+		itemcode = reqDict['itemCode']
+
+		if userID is not None:
+			db = get_db()
+			cursor = db.cursor()
+			stmt = ('UPDATE cartdata SET ' + itemcode + ' = NULL WHERE id = %s')
+			cursor.execute(stmt, (userID, ))
+
+			cursor.close()
+			db.commit()
+
+			res = {'remove': True}
+			return cors_res(res)
+
+		res = {'remove': False}
+		return cors_res(res)

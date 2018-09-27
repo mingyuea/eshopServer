@@ -13,6 +13,7 @@ def get_db():
 		)
 	return g.db
 
+
 def close_db(e=None):
 	db = g.pop('db', None)
 
@@ -78,19 +79,23 @@ def init_db():
 	cursor.execute("SELECT itemcode FROM inventory")
 	itemCodes = cursor.fetchall()
 	createCartTable = "CREATE TABLE cartdata (id INT PRIMARY KEY NOT NULL"
+	
 	for itemCode in itemCodes:
 		createCartTable = createCartTable + ', ' + itemCode[0] + " INT(8)"
 	createCartTable += ')'
+
 	cursor.execute(createCartTable)
 	db.commit()
 	cursor.close()
 	db.close()
+
 
 @click.command('init-db')
 @with_appcontext
 def init_db_command():
 	init_db()
 	click.echo('Initialized MySQL database')
+
 
 def init_app(app):
 	app.teardown_appcontext(close_db)
