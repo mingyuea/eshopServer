@@ -1,4 +1,5 @@
 import click
+import os
 from flask import current_app, g
 from flask.cli import with_appcontext
 import mysql.connector as mysql
@@ -6,10 +7,11 @@ import mysql.connector as mysql
 def get_db():
 	if 'db' not in g:
 		g.db = mysql.connect(
-			user=current_app.config['DBUSER'],
-			password=current_app.config['DBPASS'],
-			host=current_app.config['DBHOST'],
-			database=current_app.config['DBNAME']
+			user=os.environ['RDS_USERNAME'],
+			password=os.environ['RDS_PASSWORD'],
+			host=os.environ['RDS_HOSTNAME'],
+			database=os.environ['RDS_DB_NAME'],
+			port=os.environ['RDS_PORT']
 		)
 	return g.db
 

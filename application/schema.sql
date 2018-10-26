@@ -14,5 +14,6 @@ CREATE TABLE inventory (
 	price FLOAT(5,2),
 	rating FLOAT(3,1),
 	descrip VARCHAR(200),
-	img VARCHAR(30)
+	img VARCHAR(30),
+	FULLTEXT (name)
 );

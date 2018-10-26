@@ -1,7 +1,12 @@
 __pycache__/
+.ebextensions/
 Include/
 instance/
 Lib/
 Scripts/
 tcl/
 application/tester.py
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

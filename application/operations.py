@@ -2,10 +2,15 @@ from flask import (
 	Blueprint, flash, g, request, session, current_app
 )
 
-from application.db import get_db
+from application.db import get_db, init_db
 from application.cors_response import cors_res
 
 bp = Blueprint('operations', __name__, url_prefix='/operations')
+
+@bp.route('/initDB', methods=('GET',))
+def initDB():
+		init_db()
+		return "The database has been init"
 
 @bp.route('/inventory', methods=('GET',))
 def inventory():
@@ -59,7 +64,7 @@ def addcart():
 			db.commit()
 			resBody['addSuccess'] = True
 			resBody['itemCount'] = itemCount
-			
+
 			return cors_res(resBody)
 
 
@@ -118,3 +123,23 @@ def remove():
 
 		res = {'remove': False}
 		return cors_res(res)
+
+@bp.route('/search', methods=('POST','OPTIONS'))
+def search():
+
+	if(request.method == 'OPTIONS'):
+		return cors_res()
+	else:
+		reqDict = request.get_json()
+		searchIn = reqDict['searchIn']
+		#current_app.logger.debug(reqDict)
+
+		db = get_db()
+		cursor = db.cursor(dictionary=True)
+		query = ("SELECT * FROM inventory WHERE MATCH (name) AGAINST (%s IN NATURAL LANGUAGE MODE)")
+		cursor.execute(query, (searchIn,))
+
+		searchRes = cursor.fetchall()
+		#current_app.logger.debug(searchRes)
+
+		return cors_res(searchRes)

@@ -1,5 +1,6 @@
 from flask import Response
 import json
+import os
 
 def cors_res(res=None):
 	newRes = None
@@ -9,7 +10,7 @@ def cors_res(res=None):
 		js = json.dumps(res)
 		newRes = Response(js, status=200, mimetype='application/json')
 	
-	newRes.headers['Access-Control-Allow-Origin'] = "http://localhost:8080"
+	newRes.headers['Access-Control-Allow-Origin'] = os.environ['ALLOW_ORIGIN']
 	newRes.headers['Access-Control-Allow-Credentials'] = 'true'
 	newRes.headers['Access-Control-Allow-Headers'] = "Content-Type"
 
